@@ -15,25 +15,34 @@ public class ProductController {
     @Autowired
     private ProductRepository productRepository;
 
-
-    @RequestMapping("/")
+    @GetMapping("/")
+    public String index() {
+        return "redirect:/index";
+    }
+    @RequestMapping("/index")
     public String getMainPage(Model model) {
         model.addAttribute("products", productRepository.findAll());
         return "index";
     }
 
-    @PostMapping(path="/addProduct")
-    public @ResponseBody
-    String addProduct (@RequestParam String name, @RequestParam String description,
-                      @RequestParam int price, @RequestParam int quantity) {
+//    @PostMapping(path="/index")
+//    public @ResponseBody
+//    String addProduct (@RequestParam String name, @RequestParam String description,
+//                      @RequestParam int price, @RequestParam int quantity) {
+//
+//        Product n = new Product();
+//        n.setName(name);
+//        n.setDescription(description);
+//        n.setPrice(price);
+//        n.setQuantity(quantity);
+//        productRepository.save(n);
+//        return "Saved";
+//    }
 
-        Product n = new Product();
-        n.setName(name);
-        n.setDescription(description);
-        n.setPrice(price);
-        n.setQuantity(quantity);
-        productRepository.save(n);
-        return "Saved";
+    @PostMapping("/index")
+    public String formPost(Product product, Model model) {
+        model.addAttribute("product",product);
+        productService.addProduct(product);
+        return "result";
     }
-
 }
