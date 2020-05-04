@@ -25,24 +25,19 @@ public class ProductController {
         return "index";
     }
 
-//    @PostMapping(path="/index")
-//    public @ResponseBody
-//    String addProduct (@RequestParam String name, @RequestParam String description,
-//                      @RequestParam int price, @RequestParam int quantity) {
-//
-//        Product n = new Product();
-//        n.setName(name);
-//        n.setDescription(description);
-//        n.setPrice(price);
-//        n.setQuantity(quantity);
-//        productRepository.save(n);
-//        return "Saved";
-//    }
-
     @PostMapping("/index")
     public String formPost(Product product, Model model) {
         model.addAttribute("product",product);
         productService.addProduct(product);
         return "result";
     }
+    @DeleteMapping("/delete/{id}")
+    public String deleteProduct(@PathVariable Integer id, Model model) {
+        model.addAttribute("id",id);
+        productService.delete(id);
+        return "result";
+    }
+
+
+
 }

@@ -5,11 +5,7 @@
         <title>Lesson 65 homeWork</title>
     </head>
     <body>
-    Success you added to database</br>
-    <p>Name:${product.name}</p>
-    <p>Description:${product.description}</p>
-    <p>Price:${product.price}</p>
-    <p>Quantity:${product.quantity}</p>
+    You deleted ${id.id} </br>
 
     <a href="/index">back to main</a>
 
