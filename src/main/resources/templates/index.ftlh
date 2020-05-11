@@ -7,11 +7,15 @@
     <body>
         <h1>Содержимое страницы</h1>
 
+       <form action="/findProduct" method="get">
+           <input type="text" >
+           <input type="submit"value="search">
+       </form>
         <ul>
         <#list products as pdt>
             <li>
                 <p>
-                    ${pdt.id} - ${pdt.name} - ${pdt.description}-${pdt.price}-${pdt.quantity}-<a href="/delete/${pdt.id}">delete</a>
+                    ${pdt.id} - ${pdt.name} - ${pdt.description}-${pdt.price}-${pdt.quantity}
                 </p>
             </li>
         </#list>
