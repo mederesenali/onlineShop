@@ -8,14 +8,13 @@ import com.example.hw.repository.UserRepository;
 import com.example.hw.repository.UserResponseDTO;
 import lombok.AllArgsConstructor;
 import lombok.var;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
 public class UserService {
     private final UserRepository repository;
-    private final PasswordEncoder encoder;
+ //   private final PasswordEncoder encoder;
 
     public UserResponseDTO register(UserRegisterForm form) {
         if (repository.existsByEmail(form.getEmail())) {
@@ -25,7 +24,7 @@ public class UserService {
         var user = User.builder()
                 .email(form.getEmail())
                 .fullname(form.getName())
-                .password(encoder.encode(form.getPassword()))
+             //   .password(encoder.encode(form.getPassword()))
                 .build();
 
         repository.save(user);
@@ -39,4 +38,5 @@ public class UserService {
 
         return UserResponseDTO.from(user);
     }
+
 }

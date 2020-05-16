@@ -41,9 +41,7 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public String registerPage(@Valid UserRegisterForm customerRequestDto,
-                               BindingResult validationResult,
-                               RedirectAttributes attributes) {
+    public String registerPage(@Valid UserRegisterForm customerRequestDto, BindingResult validationResult, RedirectAttributes attributes) {
         attributes.addFlashAttribute("dto", customerRequestDto);
 
         if (validationResult.hasFieldErrors()) {

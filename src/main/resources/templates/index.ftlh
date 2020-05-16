@@ -7,9 +7,15 @@
     <body>
         <h1>Содержимое страницы</h1>
 
-       <form action="/findProduct" method="get">
-           <input type="text" >
-           <input type="submit"value="search">
+       <form action="/filter" method="post">
+           <label>product name</label>
+           <input type="text" name="name"  >
+           <input type="submit"value="Найти">
+       </form>
+        <form action="/byDescription" method="post">
+            <label>product description</label>
+           <input type="text" name="description" >
+           <input type="submit"value="Найти">
        </form>
         <ul>
         <#list products as pdt>

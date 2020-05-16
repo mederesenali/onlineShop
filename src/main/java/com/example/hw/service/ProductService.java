@@ -17,26 +17,16 @@ public class ProductService {
     public List<Product> productList() {
         return (List<Product>) productRepository.findAll();
     }
-
-     public Product getProductByName(String name){
-        return productRepository.findByName(name);
-     }
-
-    public Product getProduct(Integer id) {
-        return productRepository.findById(id).get();
+    public List<Product> productByName(String name){
+        return productRepository.findProductByName(name);
     }
-
-    public void delete(Integer id) {
-        productRepository.deleteById(id);
+    public List<Product> producByDescription(String description){
+        return productRepository.findProductByDescription(description);
     }
-
 
     public void addProduct(Product product) {
         productRepository.save(product);
     }
 
-    public Optional<Product> updateProduct(Integer id) {
-        return productRepository.findById(id);
-    }
 
 }
