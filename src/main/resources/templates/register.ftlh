@@ -1,38 +1,24 @@
-<html>
-<head>
-    <title>register</title>
-</head>
-<body>
+<#import "partials/main.ftlh" as main />
 
+<@main.renderWith>
     <h2>Please register</h2>
     <div>
     <form action="/register" method="post">
 
-        <#if _csrf??>
-            <input type="hidden" name="${(_csrf.parameterName)!'csrf'}" value="${(_csrf.token)!'--no-token--'}"/>
-        </#if>
+        <form action="register.ftlh" method="post">
+            <#if _csrf??>
+                <input type="hidden" name="${(_csrf.parameterName)!'csrf'}" value="${(_csrf.token)!'--no-token--'}"/>
+            </#if>
+            <label>Name</label>
+            <input type="text" name="fullName">
+            <br><label>Email</label>
+            <input type="email" name="email"><br>
+            <label>Password</label>
+            <input type="password" name="password">
+            <input type="submit" value="register"><br>
 
-        <div>
-            <label class="flex flex-v-center">
-                <p class="label-input-text">Имя:</p>
-                <input type="text" name="name" placeholder="ваше имя"  value="${(dto.name)!''}">
-            </label>
-        </div>
-        <div>
-            <label class="flex flex-v-center">
-                <p class="label-input-text">Адрес почты:</p>
-                <input type="text" name="email" placeholder="ваш адрес почты"  value="${(dto.email)!''}" >
-            </label>
-        </div>
-        <div>
-            <label class="flex flex-v-center">
-                <p class="label-input-text">Пароль:</p>
-                <input type="text" name="password" placeholder="пароль"  value="">
-            </label>
-        </div>
-        <div>
-            <button type="submit">Регистрация</button>
-        </div>
+        </form>
+
         <div>
             <#if errors?? >
                 <p>Входные данные с ошибками!</p>
@@ -46,5 +32,4 @@
     <div class="bottom-box">
         <a href="/">На главную страницу</a>
     </div>
-</body>
-</html>
+</@main.renderWith>

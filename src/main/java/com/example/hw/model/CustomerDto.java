@@ -1,23 +1,21 @@
-package com.example.hw.repository;
+package com.example.hw.model;
 
-
-import com.example.hw.model.User;
 import lombok.*;
 
 @Data
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder(access = AccessLevel.PACKAGE)
-public class UserResponseDTO {
+public class CustomerDto {
 
     private int id;
-    private String fullname;
+    private String fullName;
     private String email;
 
-    public static UserResponseDTO from(User user) {
+    static CustomerDto from(Customer user) {
         return builder()
                 .id(user.getId())
-                .fullname(user.getFullname())
+                .fullName(user.getFullName())
                 .email(user.getEmail())
                 .build();
     }

@@ -1,9 +1,6 @@
-<html>
-<head>
-    <title>profile</title>
-</head>
-<body>
+<#import "partials/main.ftlh" as main />
 
+<@main.renderWith>
     <#if dto??>
         <h1>Ваши учетные данные!</h1>
         <p>${(dto.fullname)!'-- missing --'} - ${(dto.email)!'-- email missing --'}</p>
@@ -13,5 +10,4 @@
     <div class="bottom-box">
         <a href="/">На главную страницу</a>
     </div>
-</body>
-</html>
+</@main.renderWith>

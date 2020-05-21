@@ -28,5 +28,9 @@ public class ProductService {
         productRepository.save(product);
     }
 
+    public void romoveProduct(int  id) {
+        productRepository.deleteById(id);
+    }
+
 
 }

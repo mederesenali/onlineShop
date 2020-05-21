@@ -1,45 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Lesson 65 homeWork</title>
-    </head>
-    <body>
-        <h1>Содержимое страницы</h1>
+<#-- импортируем основной шаблон-контейнер который содержит в себе разметку для основной структуры страницы -->
+<#import "partials/main.ftlh" as main />
 
-       <form action="/filter" method="post">
-           <label>product name</label>
-           <input type="text" name="name"  >
-           <input type="submit"value="Найти">
-       </form>
-        <form action="/byDescription" method="post">
-            <label>product description</label>
-           <input type="text" name="description" >
-           <input type="submit"value="Найти">
-       </form>
-        <ul>
-        <#list products as pdt>
-            <li>
-                <p>
-                    ${pdt.id} - ${pdt.name} - ${pdt.description}-${pdt.price}-${pdt.quantity}
-                </p>
-            </li>
-        </#list>
-        </ul>
+<#-- обрабатываем его, и передаём ему список скриптов, которые необходимо подключить-->
+<@main.renderWith>
 
-      <form action="/index" method="post">
-          <label>Name</label>
-          <input type="text" name="name" id="name" required="required" placeholder="product name"><br>
 
-          <label>Description</label>
-          <input type="text" name="description" required="required" id="description" placeholder="product description"><br>
+    <#if errorText?? >
+        <div>
+            <p>${errorText!'-- no message --'}</p>
+        </div>
+    </#if>
 
-          <label>Price</label>
-          <input type="number" name="price" required="required"  id="price" placeholder="product price"><br>
+    <div class="flex flex-justify-content-center">
+        <a class="flex box-128" href="/forgot"> Забыли Пароль </a>
+        <a class="flex box-128" href="/register"> Регистрация </a>
+        <a class="flex box-128" href="/login"> Войти </a>
+        <a class="flex box-128" href="/profile"> Профиль </a>
 
-          <label>Quantity</label>
-          <input type="number" name="quantity" required="required"  id="quantity" placeholder="product quantity"><br>
-          <input type="submit" value="add Product">
-      </form>
-    </body>
-</html>
+        <form class="flex box-128" action="/logout" method="post">
+            <#if _csrf??>
+                <input type="hidden" name="${(_csrf.parameterName)!'csrf'}" value="${(_csrf.token)!'--no-token--'}"/>
+            </#if>
+            <button class="flex box-128 logout-button">Выйти </button>
+        </form>
+
+    </div>
+
+</@main.renderWith>

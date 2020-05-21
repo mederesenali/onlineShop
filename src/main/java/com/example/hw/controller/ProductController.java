@@ -1,14 +1,11 @@
 package com.example.hw.controller;
 
 import com.example.hw.model.Product;
-import com.example.hw.repository.ProductRepository;
 import com.example.hw.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @Controller
 public class ProductController {
@@ -17,19 +14,19 @@ public class ProductController {
 
 
 
-    @RequestMapping()
+    @RequestMapping("/index")
     public String getMainPage(Model model) {
         model.addAttribute("products", productService.productList());
-        return "index";
+        return "product";
     }
-    @PostMapping()
+    @PostMapping("/index")
     public String formPost(Product product, Model model) {
 
         productService.addProduct(product);
         Iterable<Product> products = productService.productList();
 
         model.addAttribute("products", products);
-        return "index";
+        return "product";
     }
 
 
@@ -45,7 +42,7 @@ public class ProductController {
 
         model.addAttribute("products", products);
 
-        return "index";
+        return "product";
     }
     @PostMapping("/byDescription")
     public String findProduct(@RequestParam String description,Model model) {
@@ -59,9 +56,17 @@ public class ProductController {
 
         model.addAttribute("products", products);
 
-        return "index";
+        return "product";
     }
 
+    @DeleteMapping("/delete{id}")
+    public String deleteProduct(@PathVariable int id,Model model){
+        productService.romoveProduct(id);
+        Iterable<Product> products = productService.productList();
+
+        model.addAttribute("products", products);
+        return "redirect:/index";
+    }
 
 
 

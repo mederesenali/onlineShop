@@ -1,19 +1,19 @@
 package com.example.hw.model;
 
-
 import lombok.*;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Data
-@Table(name="users")
+@Table(name="customers")
 @Entity
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
-public class User {
+public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -32,16 +32,17 @@ public class User {
     @NotBlank
     @Size(min = 1, max = 128)
     @Column(length = 128)
-    private String fullname;
+    private String fullName;
 
     @Column
     @Builder.Default
-    private boolean enabled = true;
+    private boolean enabled=true ;
 
     @NotBlank
     @Size(min = 1, max = 128)
     @Column(length = 128)
     @Builder.Default
-    private String role = "USER";
+    private String role= "USER";
+
 
 }

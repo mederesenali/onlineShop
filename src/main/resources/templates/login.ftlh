@@ -1,8 +1,6 @@
-<html>
-<head>
-    <title>login</title>
-</head>
-<body>
+<#import "partials/main.ftlh" as main />
+
+<@main.renderWith>
     <h2>Please sign in</h2>
     <form action="/login" method="post">
 
@@ -35,6 +33,4 @@
     <div class="bottom-box">
         <a href="/">На главную страницу</a>
     </div>
-
-</body>
-</html>
+</@main.renderWith>
